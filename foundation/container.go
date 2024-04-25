@@ -66,7 +66,7 @@ func (c *Container) make(key any, parameters map[string]any) (any, error) {
 		return nil, fmt.Errorf("binding not found: %+v", key)
 	}
 
-	if parameters != nil {
+	if parameters == nil {
 		instance, ok := c.instances.Load(key)
 		if ok {
 			return instance, nil
