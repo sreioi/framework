@@ -4,9 +4,12 @@ import (
 	"github.com/gookit/color"
 	"github.com/spf13/cast"
 	"github.com/spf13/viper"
+	"github.com/sreioi/framework/contracts/config"
 	"github.com/sreioi/framework/support/file"
 	"os"
 )
+
+var _ config.Config = &Application{}
 
 type Application struct {
 	vip *viper.Viper
@@ -34,9 +37,7 @@ func NewApplication(envPath string) *Application {
 }
 
 func (app *Application) Env(name string, defaultValue ...any) any {
-	value := app.Get(name, defaultValue...)
-
-	return value
+	return app.Get(name, defaultValue...)
 }
 
 func (app *Application) Add(name string, configuration any) {
@@ -63,4 +64,8 @@ func (app *Application) GetInt(key string, defaultValue ...string) int {
 
 func (app *Application) GetBool(key string, defaultValue ...string) bool {
 	return cast.ToBool(app.Get(key, defaultValue))
+}
+
+func (app *Application) GetAllKeys() []string {
+	return app.vip.AllKeys()
 }

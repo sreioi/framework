@@ -13,7 +13,9 @@ type Application struct {
 
 func init() {
 	// 加载配置文件
-	app := &Application{}
+	app := &Application{
+		Container: NewContainer(),
+	}
 	// 注册框架的基本服务
 	app.registerBaseServiceProviders()
 	// 实现基础的日志服务
@@ -29,7 +31,8 @@ func NewApplication() foundation.Application {
 }
 
 func (app *Application) Boot() {
-
+	app.registerConfiguredServiceProviders()
+	app.bootConfiguredServiceProviders()
 }
 
 // getBaseServiceProviders 获取框架的基本服务提供者
@@ -37,6 +40,21 @@ func (app *Application) getBaseServiceProviders() []foundation.ServiceProvider {
 	return []foundation.ServiceProvider{
 		&config.ServiceProvider{},
 	}
+}
+
+// getConfiguredServiceProviders 获取配置的服务提供者
+func (app *Application) getConfiguredServiceProviders() []foundation.ServiceProvider {
+	return app.MakeConfig().Get("app.providers").([]foundation.ServiceProvider)
+}
+
+// registerConfiguredServiceProviders 注册配置的服务提供者
+func (app *Application) registerConfiguredServiceProviders() {
+	app.registerServiceProviders(app.getConfiguredServiceProviders())
+}
+
+// bootConfiguredServiceProviders 启动配置的服务提供者
+func (app *Application) bootConfiguredServiceProviders() {
+	app.bootServiceProviders(app.getConfiguredServiceProviders())
 }
 
 // registerBaseServiceProviders 注册框架的基本服务

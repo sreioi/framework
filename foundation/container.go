@@ -21,7 +21,7 @@ func NewContainer() *Container {
 }
 
 // Bind 绑定
-func (c *Container) Bind(key string, callback func(app foundation.Application) (any, error)) {
+func (c *Container) Bind(key any, callback func(app foundation.Application) (any, error)) {
 	c.bindings.Store(key, instance{
 		concrete: callback,
 		shared:   false,
@@ -29,7 +29,7 @@ func (c *Container) Bind(key string, callback func(app foundation.Application) (
 }
 
 // BindWith 绑定并且附带参数
-func (c *Container) BindWith(key string, callback func(app foundation.Application, parameters map[string]any) (any, error)) {
+func (c *Container) BindWith(key any, callback func(app foundation.Application, parameters map[string]any) (any, error)) {
 	c.bindings.Store(key, instance{
 		concrete: callback,
 		shared:   false,
