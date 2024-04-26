@@ -3,6 +3,7 @@ package foundation
 import (
 	"github.com/sreioi/framework/config"
 	"github.com/sreioi/framework/contracts/foundation"
+	"github.com/sreioi/framework/facades"
 )
 
 var App foundation.Application
@@ -33,6 +34,7 @@ func NewApplication() foundation.Application {
 func (app *Application) Boot() {
 	app.registerConfiguredServiceProviders()
 	app.bootConfiguredServiceProviders()
+	app.setTimezone()
 }
 
 // getBaseServiceProviders 获取框架的基本服务提供者
@@ -79,4 +81,8 @@ func (app *Application) bootServiceProviders(serviceProviders []foundation.Servi
 	for _, serviceProvider := range serviceProviders {
 		serviceProvider.Boot(app)
 	}
+}
+
+func (app *Application) setTimezone() {
+	facades.Time().SetTimezone(app.MakeConfig().Get("app.timezone").(string))
 }
