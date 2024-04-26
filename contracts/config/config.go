@@ -10,7 +10,7 @@ type Config interface {
 	// GetString get string type config from application.
 	GetString(key string, defaultValue ...string) string
 	// GetInt get int type config from application.
-	GetInt(key string, defaultValue ...string) int
+	GetInt(key string, defaultValue ...any) int
 	// GetBool get bool type config from application.
 	GetBool(key string, defaultValue ...string) bool
 	// GetAllKeys get all keys from application.

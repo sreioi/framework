@@ -9,6 +9,8 @@ const (
 )
 
 var (
-	Env     = EnvRuntime
-	EnvPath = ".env"
+	Env          = EnvRuntime
+	EnvPath      = ".env"
+	RelativePath string
+	RootPath     string
 )
