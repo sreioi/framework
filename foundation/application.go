@@ -1,9 +1,10 @@
 package foundation
 
 import (
+	carbon2 "github.com/golang-module/carbon/v2"
 	"github.com/sreioi/framework/config"
 	"github.com/sreioi/framework/contracts/foundation"
-	"github.com/sreioi/framework/facades"
+	"github.com/sreioi/framework/support/carbon"
 )
 
 var App foundation.Application
@@ -84,5 +85,5 @@ func (app *Application) bootServiceProviders(serviceProviders []foundation.Servi
 }
 
 func (app *Application) setTimezone() {
-	facades.Time().SetTimezone(app.MakeConfig().Get("app.timezone").(string))
+	carbon.NewTime().SetTimezone(app.MakeConfig().GetString("app.timezone", carbon2.Shanghai))
 }

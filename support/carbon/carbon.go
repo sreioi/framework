@@ -5,22 +5,22 @@ import (
 	"sync"
 )
 
-var Caron carbon.Carbon
+var Carbon carbon.Carbon
 
-var once sync.Once
+var once = sync.Once{}
 
 func init() {
 	once.Do(func() {
 		carbon.SetDefault(carbon.Default{
 			Layout:       carbon.DateTimeLayout,
-			Timezone:     carbon.PRC,
+			Timezone:     carbon.Shanghai,
 			WeekStartsAt: carbon.Sunday,
 			Locale:       "zh-CN",
 		})
-		Caron = carbon.NewCarbon()
+		Carbon = carbon.NewCarbon()
 	})
 }
 
 func NewTime() carbon.Carbon {
-	return Caron
+	return Carbon
 }
