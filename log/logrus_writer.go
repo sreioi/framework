@@ -132,6 +132,7 @@ func registerHook(config config.Config, instance *logrus.Logger, channel string)
 				return err
 			}
 		}
+		return nil
 	case log.SingleDriver: // 单个日志文件
 		// 判断是否打印到控制台
 		if !config.GetBool(channelPath + ".print") {
