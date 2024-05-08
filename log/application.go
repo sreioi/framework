@@ -52,13 +52,13 @@ func (r *Application) WithContext(ctx context.Context) log.Writer {
 	}
 }
 
-func (r *Application) Channel(channel string) *Application {
+func (r *Application) Channel(channel string) log.Writer {
 	logger, ok := logsChannel[channel]
 	if !ok {
 		color.Redln("Error log channel : " + channel)
 		return nil
 	}
-	return &logger
+	return logger.Writer
 }
 
 func initLogs(config config.Config) {

@@ -19,7 +19,7 @@ type Log interface {
 	// WithContext adds a context to the logger.
 	WithContext(ctx context.Context) Writer
 	Writer
-	Channel(channel string) Log
+	Channel(channel string) Writer
 }
 
 type Writer interface {
