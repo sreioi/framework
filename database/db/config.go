@@ -42,7 +42,7 @@ func (c *ConfigImpl) Writes() []database.Config {
 	if configs, ok := configs.([]database.Config); ok {
 		return c.fillDefault(configs)
 	}
-	return []database.Config{}
+	return c.fillDefault([]database.Config{{}})
 }
 
 func (c *ConfigImpl) fillDefault(configs []database.Config) []database.Config {
