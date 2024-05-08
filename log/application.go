@@ -6,7 +6,6 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/sreioi/framework/contracts/config"
 	"github.com/sreioi/framework/contracts/log"
-	"github.com/sreioi/framework/foundation"
 )
 
 type Application struct {
@@ -35,7 +34,7 @@ func NewApplication(config config.Config) *Application {
 	//	Writer:   NewWriter(instance.WithContext(context.Background())),
 	//}
 
-	initLogs()
+	initLogs(config)
 	if logging := config.GetString("log.default"); logging != "" {
 		if logger, ok := logsChannel[logging]; ok {
 			return &logger
@@ -62,15 +61,14 @@ func (r *Application) Channel(channel string) *Application {
 	return &logger
 }
 
-func initLogs() {
-	makeConfig := foundation.NewApplication().MakeConfig()
-	channels := makeConfig.Get("log.channels").(map[string]any)
+func initLogs(config config.Config) {
+	channels := config.Get("log.channels").(map[string]any)
 	for channel, _ := range channels {
 		if channel != "" {
 			instance := logrus.New()
 			instance.SetLevel(logrus.DebugLevel)
 
-			if err := registerHook(makeConfig, instance, channel); err != nil {
+			if err := registerHook(config, instance, channel); err != nil {
 				color.Redln("Init facades.Log error: " + err.Error())
 			}
 
