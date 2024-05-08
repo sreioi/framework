@@ -29,7 +29,7 @@ func (general *General) Format(entry *logrus.Entry) ([]byte, error) {
 		b = &bytes.Buffer{}
 	}
 
-	dataTime := carbon.NewTime().Now().ToDateTimeString()
+	dataTime := carbon.Now().ToDateTimeString()
 
 	b.WriteString(fmt.Sprintf("[%s] %s.%s: %s\n", dataTime, general.config.GetString("app.env"), entry.Level, entry.Message))
 	data := entry.Data
