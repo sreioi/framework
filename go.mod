@@ -4,9 +4,13 @@ go 1.22.0
 
 require (
 	github.com/gabriel-vasile/mimetype v1.4.3
+<<<<<<< HEAD
 	github.com/glebarez/sqlite v1.11.0
 	github.com/golang-module/carbon/v2 v2.3.12
 	github.com/google/wire v0.6.0
+=======
+	github.com/golang-module/carbon/v2 v2.3.12
+>>>>>>> af3c44baaea96eba9a320ce0487af84e431baa60
 	github.com/gookit/color v1.5.4
 	github.com/goravel/file-rotatelogs/v2 v2.4.2
 	github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5
@@ -24,11 +28,14 @@ require (
 require (
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
+<<<<<<< HEAD
 	github.com/glebarez/go-sqlite v1.21.2 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/golang-sql/civil v0.0.0-20220223132316-b832511892a9 // indirect
 	github.com/golang-sql/sqlexp v0.1.0 // indirect
 	github.com/google/uuid v1.4.0 // indirect
+=======
+>>>>>>> af3c44baaea96eba9a320ce0487af84e431baa60
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
