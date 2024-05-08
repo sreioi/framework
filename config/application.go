@@ -58,11 +58,11 @@ func (app *Application) GetString(key string, defaultValue ...string) string {
 	return cast.ToString(app.Get(key, defaultValue))
 }
 
-func (app *Application) GetInt(key string, defaultValue ...string) int {
+func (app *Application) GetInt(key string, defaultValue ...any) int {
 	return cast.ToInt(app.Get(key, defaultValue))
 }
 
-func (app *Application) GetBool(key string, defaultValue ...string) bool {
+func (app *Application) GetBool(key string, defaultValue ...any) bool {
 	return cast.ToBool(app.Get(key, defaultValue))
 }
 
