@@ -86,5 +86,5 @@ func (app *Application) bootServiceProviders(serviceProviders []foundation.Servi
 
 // setTimezone 设置时区
 func (app *Application) setTimezone() {
-	carbon.NewTime().SetTimezone(app.MakeConfig().GetString("app.timezone", carbon2.Shanghai))
+	carbon.SetTimezone(app.MakeConfig().GetString("app.timezone", carbon2.Shanghai))
 }
