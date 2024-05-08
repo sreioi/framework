@@ -49,7 +49,7 @@ func (c *ConfigImpl) fillDefault(configs []database.Config) []database.Config {
 	var newConfigs []database.Config
 	driver := c.config.GetString(fmt.Sprintf("database.connections.%s.driver", c.connection))
 	for _, item := range configs {
-		if driver != orm.DriverSQLite.String() {
+		if driver != orm.DriverSqlite.String() {
 			if item.Host == "" {
 				item.Host = c.config.GetString(fmt.Sprintf("database.connections.%s.host", c.connection))
 			}
