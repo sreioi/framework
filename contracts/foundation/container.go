@@ -2,6 +2,7 @@ package foundation
 
 import (
 	"github.com/sreioi/framework/contracts/config"
+	"github.com/sreioi/framework/contracts/database/orm"
 	"github.com/sreioi/framework/contracts/log"
 )
 
@@ -20,4 +21,6 @@ type Container interface {
 	MakeConfig() config.Config
 	// MakeLog resolves the log instance.
 	MakeLog() log.Log
+	// MakeOrm resolves the orm instance.
+	MakeOrm() orm.Orm
 }

@@ -4,7 +4,9 @@ import (
 	"github.com/gookit/color"
 	"github.com/sreioi/framework/config"
 	Conconfig "github.com/sreioi/framework/contracts/config"
+	"github.com/sreioi/framework/contracts/database/orm"
 	Conlog "github.com/sreioi/framework/contracts/log"
+	"github.com/sreioi/framework/database"
 	"github.com/sreioi/framework/log"
 )
 
@@ -24,4 +26,14 @@ func (c *Container) MakeLog() Conlog.Log {
 		return nil
 	}
 	return instance.(Conlog.Log)
+}
+
+func (c *Container) MakeOrm() orm.Orm {
+	instance, err := c.Make(database.BindingOrm)
+	if err != nil {
+		color.Redln(err)
+		return nil
+	}
+
+	return instance.(orm.Orm)
 }
