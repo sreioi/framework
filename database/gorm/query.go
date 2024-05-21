@@ -83,6 +83,14 @@ func (r *QueryImpl) Count(count *int64) error {
 	return query.instance.Count(count).Error
 }
 
+func (r *QueryImpl) Connection(databaseName string) ormcontract.Query {
+	queryImpl, exists := r.queries[databaseName]
+	if exists {
+		return queryImpl
+	}
+	return r
+}
+
 func (r *QueryImpl) Create(value any) error {
 	query, err := r.refreshConnection(value)
 	if err != nil {

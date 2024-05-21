@@ -39,6 +39,8 @@ type Query interface {
 	Driver() Driver
 	// Count 获取记录数。
 	Count(count *int64) error
+	// Connection 获取一个新的查询创建器实例。
+	Connection(databaseName string) Query
 	// Create 创建记录。
 	Create(value any) error
 	// Cursor 返回一个游标，使用 scan() 历返回的记录。
